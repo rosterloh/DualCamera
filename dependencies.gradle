@@ -1,0 +1,58 @@
+ext.deps = [:]
+def versions = [:]
+versions.android_gradle_plugin = "3.3.0-alpha09"
+versions.kotlin = "1.2.70"
+versions.coroutines = "0.26.0"
+versions.lifecycle = "2.0.0-rc01"
+versions.navigation = "1.0.0-alpha05"
+versions.room = "2.0.0-alpha1"
+versions.work = "1.0.0-alpha04"
+versions.support = '1.0.0-rc02'
+versions.constraint_layout = "2.0.0-alpha2"
+versions.material = "1.0.0-rc02"
+versions.timber = "4.7.1"
+versions.koin = "1.0.0-RC-3"
+versions.junit = "4.12"
+versions.runner = "1.1.0-alpha4"
+versions.espresso = "3.1.0-alpha4"
+
+def deps = [:]
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+deps.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
+deps.coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+deps.coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+deps.databinding = "androidx.databinding:databinding-compiler:$versions.android_gradle_plugin"
+deps.lifecycle = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+deps.nav_fragment = "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
+deps.nav_ui = "android.arch.navigation:navigation-ui-ktx:$versions.navigation"
+deps.room = "androidx.room:room-runtime:$versions.room"
+deps.room_compiler = "androidx.room:room-compiler:$versions.room"
+deps.work = "android.arch.work:work-runtime-ktx:$versions.work"
+deps.ktx = "androidx.core:core-ktx:$versions.support"
+deps.appcompat = "androidx.appcompat:appcompat:$versions.support"
+deps.cardview = "androidx.cardview:cardview:$versions.support"
+deps.recyclerview = "androidx.recyclerview:recyclerview:$versions.support"
+deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+deps.material = "com.google.android.material:material:$versions.material"
+deps.androidthings = "com.google.android.things:androidthings:$versions.things"
+deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+deps.koin = "org.koin:koin-androidx-viewmodel:$versions.koin"
+deps.junit = "junit:junit:$versions.junit"
+deps.runner = "androidx.test:runner:$versions.runner"
+deps.espresso_contrib = "androidx.test.espresso:espresso-contrib:$versions.espresso"
+deps.espresso_core = "androidx.test.espresso:espresso-core:$versions.espresso"
+ext.deps = deps
+
+def build_versions = [:]
+build_versions.compile_sdk = 28
+build_versions.min_sdk = 24
+build_versions.target_sdk = 28
+ext.build_versions = build_versions
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.maven { url 'https://jitpack.io' }
+}
+ext.addRepos = this.&addRepos

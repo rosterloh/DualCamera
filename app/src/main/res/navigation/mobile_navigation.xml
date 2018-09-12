@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/blankFragment">
+
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.rosterloh.dualcamera.BlankFragment"
+        android:label="BlankFragment" >
+        <action
+            android:id="@+id/action_blankFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment"
+            app:enterAnim="@anim/enter_fade_in"
+            app:exitAnim="@anim/exit_fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.rosterloh.dualcamera.CameraFragment"
+        android:label="CameraFragment" />
+</navigation>

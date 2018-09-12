@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def versionMajor = 1
+def versionMinor = 0
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    defaultConfig {
+        applicationId "com.rosterloh.dualcamera"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode versionMajor * 100 + versionMinor
+        versionName "${versionMajor}.${versionMinor}"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    kapt deps.databinding
+    implementation deps.appcompat
+    implementation deps.material
+    implementation deps.lifecycle
+    implementation deps.nav_fragment
+    implementation deps.nav_ui
+    implementation deps.ktx
+    implementation deps.constraint_layout
+    implementation deps.kotlin_stdlib
+    implementation deps.coroutines_android
+    implementation deps.timber
+    implementation deps.koin
+    // Testing dependencies
+    androidTestImplementation deps.runner
+    androidTestImplementation deps.espresso_contrib
+    androidTestImplementation deps.espresso_core
+    testImplementation deps.junit
+}

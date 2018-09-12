@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="vm" type="com.rosterloh.dualcamera.CameraViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/camera_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.rosterloh.dualcamera.CameraPreview
+            android:id="@+id/left_preview"
+            android:layout_width="320dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toStartOf="@+id/right_preview"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.rosterloh.dualcamera.CameraPreview
+            android:id="@+id/right_preview"
+            android:layout_width="320dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/left_preview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_camera0_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> vm.openCamera(0)}"
+            android:text='@{"Camera 0 " + (vm.camera0Open ? "Open" : "Closed")}'
+            app:layout_constraintLeft_toLeftOf="@id/left_preview"
+            app:layout_constraintTop_toBottomOf="@+id/left_preview"
+            tools:text="Camera 0 Closed" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_camera0_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.previewCamera(0)}"
+            android:text='@{"Camera 0 Preview " + (vm.camera0Preview ? "On" : "Off")}'
+            app:layout_constraintLeft_toLeftOf="@id/left_preview"
+            app:layout_constraintTop_toBottomOf="@+id/btn_camera0_open"
+            tools:text="Camera 0 Preview Off" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_camera1_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> vm.openCamera(1)}"
+            android:text='@{"Camera 1 " + (vm.camera1Open ? "Open" : "Closed")}'
+            app:layout_constraintRight_toRightOf="@+id/right_preview"
+            app:layout_constraintTop_toBottomOf="@+id/right_preview"
+            tools:text="Camera 1 Closed" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_camera1_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> vm.previewCamera(1)}"
+            android:text='@{"Camera 1 Preview " + (vm.camera1Preview ? "On" : "Off")}'
+            app:layout_constraintRight_toRightOf="@id/right_preview"
+            app:layout_constraintTop_toBottomOf="@+id/btn_camera1_open"
+            tools:text="Camera 1 Preview Off" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
