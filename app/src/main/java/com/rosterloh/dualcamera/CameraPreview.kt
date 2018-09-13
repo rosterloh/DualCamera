@@ -25,7 +25,7 @@ class CameraPreview : FrameLayout, SurfaceHolder.Callback {
 
     private val selectSpinner = Spinner(context)
     private val surfaceView = SurfaceView(context)
-    private var cameraId: String? = null
+    private var cameraId: String = "0"
     private var cameraDevice: CameraDevice? = null
     private var captureSession: CameraCaptureSession? = null
     private var backgroundThread: HandlerThread? = null
